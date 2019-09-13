@@ -1,0 +1,7 @@
+com\filestore\assignment\service\impl\DataStoreServiceImpl.class
+com\filestore\assignment\AssignmentApplication.class
+com\filestore\assignment\config\KeyValueStoreConfig.class
+com\filestore\assignment\service\DataStoreService.class
+com\filestore\assignment\exception\DataStoreExceptionHandler.class
+com\filestore\assignment\entity\AssignmentData.class
+com\filestore\assignment\repository\DataStoreRepository.class

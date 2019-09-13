@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.filestore.assignment.AssignmentApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.739 s <<< FAILURE! - in com.filestore.assignment.AssignmentApplicationTests
+contextLoads(com.filestore.assignment.AssignmentApplicationTests)  Time elapsed: 0.01 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration.embeddedMongoServer
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration$RuntimeConfigConfiguration] from ClassLoader [sun.misc.Launcher$AppClassLoader@232204a1]
+Caused by: java.lang.NoClassDefFoundError: de/flapdoodle/embed/process/store/ExtractedArtifactStoreBuilder
+Caused by: java.lang.ClassNotFoundException: de.flapdoodle.embed.process.store.ExtractedArtifactStoreBuilder
+
