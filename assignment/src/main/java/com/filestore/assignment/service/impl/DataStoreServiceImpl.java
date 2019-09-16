@@ -4,11 +4,13 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.filestore.assignment.dto.ValueDTO;
 import com.filestore.assignment.entity.AssignmentData;
 import com.filestore.assignment.repository.DataStoreRepository;
@@ -23,16 +25,33 @@ public class DataStoreServiceImpl implements DataStoreService {
 	@Value("${data-store.time-to-live}")
 	private Integer TTL;
 
-	@Override
-	public synchronized AssignmentData create(AssignmentData assignmentData) {
+	@Autowired
+	ObjectMapper objectMapper;
 
-		AssignmentData assignmentDataObj = dataStoreRepository.findByKey(assignmentData.getKey());
-		if (assignmentDataObj != null) {
-			throw new RuntimeException("Value for the " + assignmentData.getKey() + " already exists");
+	@SuppressWarnings("unchecked")
+	@Override
+	public AssignmentData create(JSONObject jsonObject) {
+		AssignmentData requestObj = null;
+		while (jsonObject.keys().hasNext()) {
+			Object object = jsonObject.keys().next();
+			requestObj = new AssignmentData();
+			requestObj.setKey(object.toString());
+			try {
+				requestObj.setValue(jsonObject.get((String) object));
+				break;
+			} catch (JSONException e) {
+				throw new RuntimeException("JSON exception occured while mapping");
+			}
+
 		}
-		assignmentData.setCreatedAt(LocalDateTime.now(ZoneOffset.UTC));
-		assignmentData = dataStoreRepository.insert(assignmentData);
-		return assignmentData;
+
+		AssignmentData assignmentDataObj = dataStoreRepository.findByKey(requestObj.getKey());
+		if (assignmentDataObj != null) {
+			throw new RuntimeException("Value for the " + requestObj.getKey() + " already exists");
+		}
+		requestObj.setCreatedAt(LocalDateTime.now(ZoneOffset.UTC));
+		requestObj = dataStoreRepository.insert(requestObj);
+		return requestObj;
 	}
 
 	/*

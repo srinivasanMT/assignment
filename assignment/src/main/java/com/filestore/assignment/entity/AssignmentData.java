@@ -1,6 +1,7 @@
 package com.filestore.assignment.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -34,6 +35,7 @@ public class AssignmentData {
 	@Size(min = 1, max = 32, message = "key cannot be greater than 32 or less than 1")
 	@NotBlank
 	private String key;
+
 
 	/** The value. */
 	@NotBlank

@@ -1,5 +1,7 @@
 package com.filestore.assignment.service;
 
+import org.json.JSONObject;
+
 import com.filestore.assignment.dto.ValueDTO;
 import com.filestore.assignment.entity.AssignmentData;
 
@@ -15,7 +17,7 @@ public interface DataStoreService {
 	 * @param assignmentData the assignment data
 	 * @return {@link AssignmentData} the assignment data
 	 */
-	public AssignmentData create (AssignmentData assignmentData);
+	public AssignmentData create (JSONObject assignmentData);
 	
 	/**
 	 * Read.
