@@ -1,5 +1,6 @@
 package com.filestore.assignment.service;
 
+import com.filestore.assignment.dto.ValueDTO;
 import com.filestore.assignment.entity.AssignmentData;
 
 // TODO: Auto-generated Javadoc
@@ -21,13 +22,13 @@ public interface DataStoreService {
 	 *
 	 * @return the assignment data
 	 */
-	public AssignmentData read(String key);
+	public ValueDTO read(String key);
 	
 	/**
 	 * Delete.
 	 *
 	 * @return the assignment data
 	 */
-	public AssignmentData delete();
+	public String delete(String key);
 	
 }

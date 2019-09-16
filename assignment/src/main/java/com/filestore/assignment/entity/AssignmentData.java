@@ -1,5 +1,7 @@
 package com.filestore.assignment.entity;
 
+import java.time.LocalDateTime;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
  * 
  * @author Srinivasan
  */
-@Document(collection = "data")
+@Document(collection = "data", language = "eng")
 @Data
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -27,8 +29,8 @@ public class AssignmentData {
 	/** The id. */
 	@Id
 	private String id;
-	
-	@Indexed(name = "key", expireAfterSeconds = 3600,unique=true)
+
+	@Indexed(name = "key", unique = true)
 	@Size(min = 1, max = 32, message = "key cannot be greater than 32 or less than 1")
 	@NotBlank
 	private String key;
@@ -36,5 +38,7 @@ public class AssignmentData {
 	/** The value. */
 	@NotBlank
 	private Object value;
+
+	private transient LocalDateTime createdAt;
 
 }
