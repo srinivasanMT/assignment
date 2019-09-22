@@ -1,7 +1,7 @@
 # Getting Started
 
 ### Reference Documentation
-For further reference, please consider the following sections:
+For further reference, please consider the following sections:<\br>
   ***ADD LOMBOK JAR***
 * Adding the library into your project.
 
